@@ -57,22 +57,11 @@
             border-radius: 8px;
             margin-bottom: 30px;
         }
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background: #603AFF;
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-            border-radius: 8px;
-            transition: background 0.3s ease;
-            visibility: hidden;
-        }
-        .cta-button:hover {
-            background: #4729CC;
-        }
         .code-input {
             margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .code-input input {
             padding: 10px;
@@ -80,9 +69,9 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             outline: none;
-            width: 100%;
-            box-sizing: border-box;
-            margin-bottom: 10px;
+            width: 60%;
+            max-width: 300px;
+            margin-right: 10px;
             color: #000;
             background-color: #fff;
         }
@@ -95,8 +84,6 @@
             color: #fff;
             cursor: pointer;
             transition: background 0.3s ease;
-            width: 100%;
-            box-sizing: border-box;
         }
         .submit-button:hover {
             background-color: #4729CC;
@@ -105,6 +92,22 @@
             color: #FF4500;
             font-size: 14px;
             display: none;
+            margin-top: 10px;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #603AFF;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+            visibility: hidden;
+            margin-top: 20px;
+        }
+        .cta-button:hover {
+            background: #4729CC;
         }
         .footer {
             display: flex;
@@ -138,6 +141,10 @@
                 padding: 10px 15px;
                 font-size: 16px;
             }
+            .code-input input {
+                width: 70%;
+                max-width: 250px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -154,6 +161,10 @@
             .submit-button {
                 padding: 8px 12px;
                 font-size: 14px;
+            }
+            .code-input input {
+                width: 80%;
+                max-width: 200px;
             }
             .footer {
                 flex-direction: column;
@@ -196,8 +207,8 @@
         <div class="code-input" id="code-input-section">
             <input type="text" id="invite-code" placeholder="Enter Invite Code">
             <button class="submit-button" id="submit-button">Submit</button>
-            <div id="error-message" class="error-message">Incorrect code. Please try again.</div>
         </div>
+        <div id="error-message" class="error-message">Incorrect code. Please try again.</div>
 
         <!-- Call to Action Button -->
         <a href="#" class="cta-button" id="cta-button">Connect Wallet</a>
