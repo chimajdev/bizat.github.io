@@ -167,15 +167,17 @@
                 max-width: 200px;
             }
             .footer {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .footer .center {
-                order: 2;
-                margin: 10px 0;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
             }
             .footer a {
-                margin: 5px 0;
+                margin: 0;
+            }
+            .footer .center {
+                text-align: center;
+                flex-grow: 1;
             }
         }
     </style>
