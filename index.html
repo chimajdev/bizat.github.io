@@ -26,10 +26,11 @@
             text-align: center;
         }
         .invite-only {
+            background: #FF4500;
+            color: #fff;
+            padding: 10px 20px;
             font-size: 16px;
-            color: #FF6B6B;
-            background: #2C333A;
-            padding: 5px 10px;
+            font-weight: bold;
             border-radius: 5px;
             margin-bottom: 20px;
             display: inline-block;
@@ -53,23 +54,8 @@
             border-radius: 8px;
             margin-bottom: 30px;
         }
-        .code-input {
-            margin-bottom: 20px;
-        }
-        .code-input input {
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #4F94FF;
-            width: 100%;
-            max-width: 300px;
-            margin: 0 auto;
-            display: block;
-            color: #000;
-            text-align: center;
-        }
         .cta-button {
-            display: none;
+            display: inline-block;
             padding: 15px 40px;
             background: linear-gradient(90deg, #4F94FF, #699CFF);
             color: #fff;
@@ -77,27 +63,43 @@
             font-size: 18px;
             border-radius: 8px;
             transition: background 0.3s ease;
-        }
-        .cta-button.show {
-            display: inline-block;
+            visibility: hidden;
         }
         .cta-button:hover {
             background: linear-gradient(90deg, #3E7BCC, #5884D9);
         }
-    </style>
-    <script>
-        function checkCode() {
-            const inputCode = document.getElementById('inviteCode').value;
-            const correctCode = 'DR1H87';
-            const ctaButton = document.querySelector('.cta-button');
-            
-            if (inputCode === correctCode) {
-                ctaButton.classList.add('show');
-            } else {
-                alert('Invalid code. Please try again.');
-            }
+        .code-input {
+            margin-bottom: 20px;
         }
-    </script>
+        .code-input input {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        .submit-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4F94FF;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .submit-button:hover {
+            background-color: #3E7BCC;
+        }
+        .error-message {
+            color: #FF4500;
+            font-size: 14px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -114,7 +116,7 @@
 
         <!-- Description -->
         <div class="description">
-            <p>Claim your free tokens by participating in our invite-only airdrop event. Enter your code to unlock the rewards.</p>
+            <p>Claim your free tokens by participating in our airdrop event. Don't miss your chance to be part of the next big thing in crypto!</p>
         </div>
 
         <!-- Image Placeholder -->
@@ -124,9 +126,37 @@
 
         <!-- Code Input -->
         <div class="code-input">
-            <input type="text" id="inviteCode" placeholder="Enter Invite Code">
+            <input type="text" id="invite-code" placeholder="Enter Invite Code">
+            <button class="submit-button" id="submit-button">Submit</button>
+            <div id="error-message" class="error-message">Incorrect code. Please try again.</div>
         </div>
-        <button onclick="checkCode()" class="cta-button">Claim Airdrop</button>
+
+        <!-- Call to Action Button -->
+        <a href="#" class="cta-button" id="cta-button">Claim Airdrop</a>
     </div>
+
+    <script>
+        const correctCode = 'DR1H87';
+        const inputField = document.getElementById('invite-code');
+        const submitButton = document.getElementById('submit-button');
+        const ctaButton = document.getElementById('cta-button');
+        const errorMessage = document.getElementById('error-message');
+
+        submitButton.addEventListener('click', function() {
+            if (inputField.value === correctCode) {
+                ctaButton.style.visibility = 'visible';
+                errorMessage.style.display = 'none';
+            } else {
+                ctaButton.style.visibility = 'hidden';
+                errorMessage.style.display = 'block';
+            }
+        });
+
+        inputField.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                submitButton.click();
+            }
+        });
+    </script>
 </body>
 </html>
