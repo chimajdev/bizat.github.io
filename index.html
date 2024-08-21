@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Airdrop</title>
+    <title>Crypto Airdrop - Invite Only</title>
     <style>
         body {
             margin: 0;
@@ -25,6 +25,15 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
+        .invite-only {
+            font-size: 16px;
+            color: #FF6B6B;
+            background: #2C333A;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
         .logo img {
             max-width: 150px;
             margin-bottom: 20px;
@@ -44,8 +53,23 @@
             border-radius: 8px;
             margin-bottom: 30px;
         }
+        .code-input {
+            margin-bottom: 20px;
+        }
+        .code-input input {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #4F94FF;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            display: block;
+            color: #000;
+            text-align: center;
+        }
         .cta-button {
-            display: inline-block;
+            display: none;
             padding: 15px 40px;
             background: linear-gradient(90deg, #4F94FF, #699CFF);
             color: #fff;
@@ -54,13 +78,32 @@
             border-radius: 8px;
             transition: background 0.3s ease;
         }
+        .cta-button.show {
+            display: inline-block;
+        }
         .cta-button:hover {
             background: linear-gradient(90deg, #3E7BCC, #5884D9);
         }
     </style>
+    <script>
+        function checkCode() {
+            const inputCode = document.getElementById('inviteCode').value;
+            const correctCode = 'DR1H87';
+            const ctaButton = document.querySelector('.cta-button');
+            
+            if (inputCode === correctCode) {
+                ctaButton.classList.add('show');
+            } else {
+                alert('Invalid code. Please try again.');
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container">
+        <!-- Invite Only Label -->
+        <div class="invite-only">INVITE ONLY</div>
+
         <!-- Logo Placeholder -->
         <div class="logo">
             <img src="https://via.placeholder.com/150x75.png?text=Logo" alt="Logo">
@@ -71,7 +114,7 @@
 
         <!-- Description -->
         <div class="description">
-            <p>Claim your free tokens by participating in our airdrop event. Don't miss your chance to be part of the next big thing in crypto!</p>
+            <p>Claim your free tokens by participating in our invite-only airdrop event. Enter your code to unlock the rewards.</p>
         </div>
 
         <!-- Image Placeholder -->
@@ -79,8 +122,11 @@
             <img src="https://via.placeholder.com/600x300.png?text=Airdrop+Image" alt="Airdrop Image">
         </div>
 
-        <!-- Call to Action Button -->
-        <a href="#" class="cta-button">Claim Airdrop</a>
+        <!-- Code Input -->
+        <div class="code-input">
+            <input type="text" id="inviteCode" placeholder="Enter Invite Code">
+        </div>
+        <button onclick="checkCode()" class="cta-button">Claim Airdrop</button>
     </div>
 </body>
 </html>
