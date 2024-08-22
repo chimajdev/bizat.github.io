@@ -185,14 +185,14 @@
             }
         }
     </style>
-    <!-- Google reCAPTCHA -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <div class="container">
-        <!-- Logo Placeholder -->
+        <!-- Logo Placeholder with Clickable Link -->
         <div class="logo">
-            <img src="https://tinyurl.com/drop-money" alt="Drop Logo">
+            <a href="https://tinyurl.com/drop-money" target="_blank">
+                <img src="https://raw.githubusercontent.com/dropdott/dropdott.github.io/main/favicon.svg" alt="Drop Logo">
+            </a>
         </div>
 
         <!-- Invite Only Label -->
@@ -221,8 +221,6 @@
                 <input type="text" name="hidden_field" value="">
             </div>
             <div id="error-message" class="error-message">Incorrect code. Please try again.</div>
-            <!-- Google reCAPTCHA -->
-            <div class="g-recaptcha" data-sitekey="your-site-key"></div>
         </form>
 
         <!-- Call to Action Button -->
