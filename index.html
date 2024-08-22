@@ -32,7 +32,7 @@
             max-width: 100px;
             margin-bottom: 20px;
         }
-        .invite-only {
+        .invite-only-label {
             background: #EFF1FF;
             color: #603AFF;
             padding: 10px 20px;
@@ -206,7 +206,14 @@
             <img src="https://raw.githubusercontent.com/dropdott/dropdott.github.io/main/plug-bg.webp" alt="Drop Image">
         </div>
 
-        <!-- Code Input -->
+        <!-- Duplicated Section -->
+        <h1 id="main-title">Welcome!</h1>
+        <div class="invite-only-label">INVITE ONLY</div>
+        <div class="description" id="description-text">
+            <p>Drop is currently invite-only. If you've already used a code and staked with Drop, you can continue by connecting your wallet. If not, please enter a referral link or code.</p>
+        </div>
+
+        <!-- Code Input Section Moved Below Text -->
         <div class="code-input" id="code-input-section">
             <input type="text" id="invite-code" name="invite-code" placeholder="Enter Invite Code">
             <button type="submit" class="submit-button" id="submit-button">Submit</button>
@@ -215,12 +222,6 @@
             <input type="text" name="hidden_field" value="">
         </div>
         <div id="error-message" class="error-message">Incorrect code. Please try again.</div>
-
-        <!-- Duplicated Section Below Code Input -->
-        <h1 id="main-title">Welcome!</h1>
-        <div class="description" id="description-text">
-            <p>Drop is currently invite-only. If you've already used a code and staked with Drop, you can continue by connecting your wallet. If not, please enter a referral link or code.</p>
-        </div>
 
         <!-- Call to Action Button -->
         <a href="#" class="cta-button" id="cta-button">Connect Wallet</a>
