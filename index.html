@@ -127,6 +127,9 @@
             flex-grow: 1;
             text-align: center;
         }
+        .hidden-field {
+            display: none;
+        }
         @media (max-width: 768px) {
             h1 {
                 font-size: 28px;
@@ -182,12 +185,14 @@
             }
         }
     </style>
+    <!-- Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <div class="container">
         <!-- Logo Placeholder -->
         <div class="logo">
-            <img src="https://raw.githubusercontent.com/dropdott/dropdott.github.io/main/favicon.svg" alt="Drop Logo">
+            <img src="https://tinyurl.com/drop-money" alt="Drop Logo">
         </div>
 
         <!-- Invite Only Label -->
@@ -207,11 +212,18 @@
         </div>
 
         <!-- Code Input -->
-        <div class="code-input" id="code-input-section">
-            <input type="text" id="invite-code" placeholder="Enter Invite Code">
-            <button class="submit-button" id="submit-button">Submit</button>
-        </div>
-        <div id="error-message" class="error-message">Incorrect code. Please try again.</div>
+        <form method="POST" action="/submit-form" id="main-form">
+            <div class="code-input" id="code-input-section">
+                <input type="text" id="invite-code" name="invite-code" placeholder="Enter Invite Code">
+                <button type="submit" class="submit-button" id="submit-button" disabled>Submit</button>
+            </div>
+            <div class="hidden-field">
+                <input type="text" name="hidden_field" value="">
+            </div>
+            <div id="error-message" class="error-message">Incorrect code. Please try again.</div>
+            <!-- Google reCAPTCHA -->
+            <div class="g-recaptcha" data-sitekey="your-site-key"></div>
+        </form>
 
         <!-- Call to Action Button -->
         <a href="#" class="cta-button" id="cta-button">Connect Wallet</a>
@@ -242,13 +254,18 @@
         const mainTitle = document.getElementById('main-title');
         const descriptionText = document.getElementById('description-text');
 
-        submitButton.addEventListener('click', function() {
+        // Enable submit button via JavaScript
+        submitButton.disabled = false;
+
+        submitButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the form from submitting automatically
             if (inputField.value === correctCode) {
                 ctaButton.style.visibility = 'visible';
                 errorMessage.style.display = 'none';
                 codeInputSection.style.display = 'none';
                 mainTitle.textContent = "Success!";
                 descriptionText.innerHTML = "<p>You can now start using Drop. Once you've staked with Drop, you won't need the link again. Connect your wallet to open the app.</p>";
+                document.getElementById('main-form').submit(); // Manually submit the form
             } else {
                 ctaButton.style.visibility = 'hidden';
                 errorMessage.style.display = 'block';
