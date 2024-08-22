@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Airdrop - Invite Only</title>
+    <title>Welcome - Drop</title>
     <style>
         body {
             margin: 0;
@@ -193,11 +193,11 @@
         <div class="invite-only">INVITE ONLY</div>
 
         <!-- Title -->
-        <h1>Crypto Airdrop</h1>
+        <h1 id="main-title">Welcome!</h1>
 
         <!-- Description -->
-        <div class="description">
-            <p>Claim your free tokens by participating in our airdrop event. Don't miss your chance to be part of the next big thing in crypto!</p>
+        <div class="description" id="description-text">
+            <p>Drop is currently invite-only. If you've already used a code and staked with Drop, you can continue by connecting your wallet. If not, please enter a referral link or code.</p>
         </div>
 
         <!-- Image Placeholder -->
@@ -238,12 +238,16 @@
         const ctaButton = document.getElementById('cta-button');
         const errorMessage = document.getElementById('error-message');
         const codeInputSection = document.getElementById('code-input-section');
+        const mainTitle = document.getElementById('main-title');
+        const descriptionText = document.getElementById('description-text');
 
         submitButton.addEventListener('click', function() {
             if (inputField.value === correctCode) {
                 ctaButton.style.visibility = 'visible';
                 errorMessage.style.display = 'none';
                 codeInputSection.style.display = 'none';
+                mainTitle.textContent = "Success!";
+                descriptionText.innerHTML = "<p>You can now start using Drop. Once you've staked with Drop, you won't need the link again. Connect your wallet to open the app.</p>";
             } else {
                 ctaButton.style.visibility = 'hidden';
                 errorMessage.style.display = 'block';
