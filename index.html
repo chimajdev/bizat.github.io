@@ -41,9 +41,6 @@
             position: relative;
         }
         .logo {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             margin-bottom: 20px;
         }
         .logo img {
@@ -52,6 +49,9 @@
         .staking-number {
             font-size: 18px;
             color: #000;
+            position: absolute;
+            top: 20px;
+            right: 20px;
             display: flex;
             align-items: center;
         }
@@ -175,6 +175,8 @@
             }
             .staking-number {
                 font-size: 16px;
+                top: 15px;
+                right: 15px;
             }
         }
 
@@ -199,6 +201,8 @@
             }
             .staking-number {
                 font-size: 14px;
+                top: 10px;
+                right: 10px;
             }
             .footer {
                 flex-direction: row;
@@ -223,9 +227,10 @@
             <a href="https://tinyurl.com/drop-money" target="_blank">
                 <img src="https://raw.githubusercontent.com/dropdott/dropdott.github.io/main/favicon.svg" alt="Drop Logo">
             </a>
-            <!-- Staking Number Display -->
-            <div class="staking-number" id="staking-number">₿🔥 0</div>
         </div>
+
+        <!-- Random Staking Number Display -->
+        <div class="staking-number" id="staking-number">₿🔥 0</div>
 
         <!-- New Upper Section -->
         <h1>Liquidity for the Interchain</h1>
