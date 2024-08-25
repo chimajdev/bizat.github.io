@@ -38,20 +38,22 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             text-align: center;
             box-sizing: border-box;
+            position: relative;
+        }
+        .logo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
         }
         .logo img {
             max-width: 100px;
-            margin-bottom: 20px;
         }
-        .invite-only-label {
-            background: #EFF1FF;
-            color: #603AFF;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            display: inline-block;
+        .staking-number {
+            font-size: 18px;
+            color: #000;
+            display: flex;
+            align-items: center;
         }
         h1 {
             font-size: 32px;
@@ -171,6 +173,9 @@
                 width: 70%;
                 max-width: 250px;
             }
+            .staking-number {
+                font-size: 16px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -191,6 +196,9 @@
             .code-input input {
                 width: 80%;
                 max-width: 200px;
+            }
+            .staking-number {
+                font-size: 14px;
             }
             .footer {
                 flex-direction: row;
@@ -215,6 +223,8 @@
             <a href="https://tinyurl.com/drop-money" target="_blank">
                 <img src="https://raw.githubusercontent.com/dropdott/dropdott.github.io/main/favicon.svg" alt="Drop Logo">
             </a>
+            <!-- Staking Number Display -->
+            <div class="staking-number" id="staking-number">₿🔥 0</div>
         </div>
 
         <!-- New Upper Section -->
@@ -314,6 +324,25 @@
         }
 
         document.addEventListener('DOMContentLoaded', startCountdown);
+    </script>
+
+    <!-- Random Staking Number Script -->
+    <script>
+        function updateStakingNumber() {
+            const stakingNumberElement = document.getElementById('staking-number');
+            let currentNumber = Math.floor(Math.random() * 1000) + 100; // Random initial number between 100 and 1099
+
+            function updateNumber() {
+                const change = Math.floor(Math.random() * 10) - 5; // Change number by -5 to +4 randomly
+                currentNumber += change;
+                if (currentNumber < 100) currentNumber = 100; // Minimum value of 100
+                stakingNumberElement.textContent = `₿🔥 ${currentNumber}`;
+            }
+
+            setInterval(updateNumber, 3000); // Update every 3 seconds
+        }
+
+        document.addEventListener('DOMContentLoaded', updateStakingNumber);
     </script>
 
     <script>
